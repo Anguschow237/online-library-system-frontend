@@ -182,7 +182,7 @@ const hotBooks = ref([])
 
 onMounted(async () => {
   try {
-    const res = await axios.get('/api/books') // matches backend route
+    const res = await axios.get('/api/books/home') // matches backend route
     carouselImages.value = res.data.carouselImages
     newBooks.value = res.data.newBooks
     trendingBooks.value = res.data.trendingBooks

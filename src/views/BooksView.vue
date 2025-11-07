@@ -120,7 +120,7 @@ const pagination = ref({ total: 0, perPage: 6, totalPages: 1, currentPage: 1 })
 
 const fetchBooks = async (page = 1) => {
   try {
-    const res = await axios.get(`/api/books/list?page=${page}`)
+    const res = await axios.get(`/api/books?page=${page}`)
     books.value = res.data.books || []
     pagination.value = res.data.pagination || {
       total: 0,

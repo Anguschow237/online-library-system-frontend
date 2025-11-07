@@ -149,8 +149,10 @@ const locations = [
 const submitForm = async () => {
   errors.value = []
   try {
-    await axios.post('/api/book/add', form.value)
-    router.push('/books')
+    const res = await axios.post('/api/books', form.value)
+    const newBookId = res.data.book._id
+    // Jump straight to the detail page of the new book
+    router.push(`/book/detail/${newBookId}`)
   } catch (err) {
     if (err.response?.data?.errors) {
       errors.value = err.response.data.errors
