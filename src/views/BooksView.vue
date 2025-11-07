@@ -31,13 +31,6 @@
       </div>
     </nav>
 
-    <!-- Breadcrumb (directly under navbar) -->
-    <!-- <div class="container-fluid">
-      <nav aria-label="breadcrumb" class="mt-3">
-
-      </nav>
-    </div> -->
-
     <!-- Books Section -->
     <div class="container-fluid my-4">
       <!-- Header row -->

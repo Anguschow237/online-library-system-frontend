@@ -4,6 +4,7 @@ import BooksView from '@/views/BooksView.vue'
 import BookAddView from '@/views/BookAddView.vue'
 import BookDetailView from '@/views/BookDetailView.vue'
 import BookEditView from '@/views/BookEditView.vue'
+import SearchView from '../views/SearchView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,6 +40,9 @@ const router = createRouter({
       component: BookEditView,
       props: true,
     },
+    { path: '/search',
+      name: 'search',
+      component: SearchView },
   ],
 })
 

@@ -20,6 +20,9 @@
             <li class="nav-item">
               <router-link class="nav-link active" to="/books">Books</router-link>
             </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/search">Search</router-link>
+            </li>
           </ul>
         </div>
       </div>
