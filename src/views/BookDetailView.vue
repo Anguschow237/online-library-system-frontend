@@ -22,7 +22,9 @@
       <!-- Breadcrumb always visible -->
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><router-link to="/books" class="text-primary">Book</router-link></li>
+          <li class="breadcrumb-item">
+            <router-link to="/books" class="text-primary">Book</router-link>
+          </li>
           <li class="breadcrumb-item active" aria-current="page">
             {{ book?.title || 'Untitled' }}
           </li>
@@ -62,6 +64,11 @@
               <tr>
                 <td class="fw-semibold">Category</td>
                 <td>{{ book.category || '-' }}</td>
+              </tr>
+              <!-- ✅ New row for location -->
+              <tr>
+                <td class="fw-semibold">Location</td>
+                <td>{{ book.location || '-' }}</td>
               </tr>
             </tbody>
           </table>
