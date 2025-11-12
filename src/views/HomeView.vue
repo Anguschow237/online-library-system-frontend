@@ -165,6 +165,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -182,7 +183,7 @@ const hotBooks = ref([])
 
 onMounted(async () => {
   try {
-    const res = await axios.get('/api/books/home') // matches backend route
+    const res = await axios.get('/api/books/home')
     carouselImages.value = res.data.carouselImages
     newBooks.value = res.data.newBooks
     trendingBooks.value = res.data.trendingBooks
@@ -192,7 +193,6 @@ onMounted(async () => {
   }
 })
 </script>
-
 
 <style>
 .carousel {
