@@ -1,24 +1,4 @@
 <template>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <router-link class="navbar-brand" to="/">Online Library</router-link>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link active" to="/books">Books</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/search">Search</router-link>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
   <div class="container-fluid my-4">
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb">

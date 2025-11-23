@@ -1,40 +1,14 @@
 <template>
   <div>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <router-link class="navbar-brand" to="/">Online Library</router-link>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/">Home</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link active" to="/books">Books</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/search">Search</router-link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
     <!-- Page content -->
     <div class="container-fluid my-4">
       <!-- Breadcrumb -->
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <router-link to="/books" class="text-primary text-decoration-none me-2">Books</router-link>
+            <router-link to="/books" class="text-primary text-decoration-none me-2"
+              >Books</router-link
+            >
           </li>
           <li class="breadcrumb-item active" aria-current="page">Add</li>
         </ol>
@@ -65,7 +39,12 @@
 
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
-          <textarea v-model="form.description" id="description" class="form-control" rows="5"></textarea>
+          <textarea
+            v-model="form.description"
+            id="description"
+            class="form-control"
+            rows="5"
+          ></textarea>
         </div>
 
         <div class="row g-3 mb-3">
@@ -79,7 +58,15 @@
           </div>
           <div class="col-md-4">
             <label for="year" class="form-label">Year</label>
-            <input v-model="form.year" id="year" type="number" min="1000" max="2025" step="1" class="form-control" />
+            <input
+              v-model="form.year"
+              id="year"
+              type="number"
+              min="1000"
+              max="2025"
+              step="1"
+              class="form-control"
+            />
           </div>
         </div>
 
@@ -102,7 +89,12 @@
         </div>
 
         <div class="form-check mb-4">
-          <input v-model="form.isHighlighted" class="form-check-input" type="checkbox" id="isHighlighted" />
+          <input
+            v-model="form.isHighlighted"
+            class="form-check-input"
+            type="checkbox"
+            id="isHighlighted"
+          />
           <label class="form-check-label" for="isHighlighted">Highlight</label>
         </div>
 
@@ -129,24 +121,45 @@ const form = ref({
   publisher: '',
   category: '',
   location: '',
-  isHighlighted: false
+  isHighlighted: false,
 })
 
 const errors = ref([])
 
 // ✅ Full lists provided
 const categories = [
-  'Science', 'Technology', 'Engineering', 'Mathematics',
-  'Arts', 'Literature', 'History', 'Geography',
-  'Philosophy', 'Psychology', 'Sociology', 'Economics',
-  'Business', 'Law', 'Medicine', 'Health',
-  'Education', 'Politics', 'Religion', 'Environment'
+  'Science',
+  'Technology',
+  'Engineering',
+  'Mathematics',
+  'Arts',
+  'Literature',
+  'History',
+  'Geography',
+  'Philosophy',
+  'Psychology',
+  'Sociology',
+  'Economics',
+  'Business',
+  'Law',
+  'Medicine',
+  'Health',
+  'Education',
+  'Politics',
+  'Religion',
+  'Environment',
 ]
 
 const locations = [
-  'Shelf A1', 'Shelf A2', 'Shelf A3',
-  'Shelf B1', 'Shelf B2', 'Shelf B3',
-  'Shelf C1', 'Shelf C2', 'Shelf C3'
+  'Shelf A1',
+  'Shelf A2',
+  'Shelf A3',
+  'Shelf B1',
+  'Shelf B2',
+  'Shelf B3',
+  'Shelf C1',
+  'Shelf C2',
+  'Shelf C3',
 ]
 
 const submitForm = async () => {

@@ -1,31 +1,12 @@
 <template>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <router-link class="navbar-brand" to="/">Online Library</router-link>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/books">Books</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link active" to="/search">Search</router-link>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
   <div class="container-fluid my-4">
     <!-- Header row -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item d-flex align-items-center">
           <router-link to="/search" class="text-primary text-decoration-none me-2"
-            >Search</router-link  >
+            >Search</router-link
+          >
           <span>/</span>
         </li>
       </ol>
@@ -57,6 +38,15 @@
                     class="btn btn-outline-primary btn-sm"
                   >
                     View
+                  </router-link>
+
+                  <!-- Only show Edit if logged in AND role === 'admin' -->
+                  <router-link
+                    v-if="user && user.role === 'admin'"
+                    :to="`/book/edit/${book._id}`"
+                    class="btn btn-outline-secondary btn-sm ms-2"
+                  >
+                    Edit
                   </router-link>
                 </div>
               </div>
@@ -141,6 +131,27 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
+import { jwtDecode } from 'jwt-decode'
+
+// --- navbar user state ---
+const user = ref(null)
+
+onMounted(() => {
+  const token = localStorage.getItem('token')
+  if (token) {
+    try {
+      const decoded = jwtDecode(token)
+      user.value = {
+        firstName: decoded.firstName,
+        lastName: decoded.lastName,
+        role: decoded.role,
+      }
+    } catch (err) {
+      console.error('Invalid token', err)
+    }
+  }
+})
+// -------------------------
 
 const route = useRoute()
 const router = useRouter()

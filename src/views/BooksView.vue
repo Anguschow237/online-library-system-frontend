@@ -1,51 +1,25 @@
 <template>
   <div>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <router-link class="navbar-brand" to="/">Online Library</router-link>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/">Home</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link active" to="/books">Books</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/search">Search</router-link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
     <!-- Books Section -->
     <div class="container-fluid my-4">
       <!-- Header row -->
       <div class="d-flex justify-content-between align-items-center mb-3">
         <ol class="breadcrumb mb-0">
           <li class="breadcrumb-item d-flex align-items-center">
-            <router-link to="/books" class="text-primary text-decoration-none me-2"
-              >Books</router-link>
+            <router-link to="/books" class="text-primary text-decoration-none me-2">
+              Books
+            </router-link>
             <span>/</span>
           </li>
         </ol>
-        <router-link to="/book/add" class="btn btn-primary">Add</router-link>
+
+        <!-- Only show Add button if user exists AND role === 'admin' -->
+        <router-link v-if="user && user.role === 'admin'" to="/book/add" class="btn btn-primary">
+          Add
+        </router-link>
       </div>
 
-      <!-- Books grid (dynamic height by description) -->
+      <!-- Books grid -->
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <div v-if="books.length === 0" class="col">
           <div class="alert alert-secondary mb-0">No books found.</div>
@@ -63,11 +37,34 @@
             </router-link>
             <div class="card-body">
               <h5 class="card-title">{{ book.title }}</h5>
-              <p class="card-text text-muted">{{ book.description }}</p>
+              <p class="card-text text-muted">{{ book.author }}</p>
+
+              <!-- Action buttons -->
               <div class="text-end">
-                <router-link :to="`/book/edit/${book._id}`" class="btn btn-outline-primary btn-sm">
+                <!-- Normal user: Borrow -->
+                <router-link
+                  v-if="user && user.role === 'user'"
+                  :to="`/book/detail/${book._id}`"
+                  class="btn btn-outline-success btn-sm"
+                >
+                  Borrow
+                </router-link>
+
+                <!-- Admin: Edit + Delete -->
+                <router-link
+                  v-if="user && user.role === 'admin'"
+                  :to="`/book/edit/${book._id}`"
+                  class="btn btn-outline-primary btn-sm me-2"
+                >
                   Edit
                 </router-link>
+                <button
+                  v-if="user && user.role === 'admin'"
+                  class="btn btn-outline-danger btn-sm"
+                  @click="deleteBook(book._id)"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>
@@ -107,6 +104,30 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import axios from 'axios'
+import { jwtDecode } from 'jwt-decode'
+
+// --- navbar user state ---
+const user = ref(null)
+
+onMounted(() => {
+  const token = localStorage.getItem('token')
+  if (token) {
+    try {
+      const decoded = jwtDecode(token)
+      user.value = {
+        firstName: decoded.firstName,
+        lastName: decoded.lastName,
+        role: decoded.role,
+      }
+    } catch (err) {
+      console.error('Invalid token', err)
+      user.value = null
+    }
+  } else {
+    user.value = null
+  }
+})
+// -------------------------
 
 const books = ref([])
 const pagination = ref({ total: 0, perPage: 6, totalPages: 1, currentPage: 1 })
@@ -133,6 +154,20 @@ const pages = computed(() =>
 const goToPage = (page) => {
   if (page >= 1 && page <= pagination.value.totalPages) {
     fetchBooks(page)
+  }
+}
+
+const deleteBook = async (id) => {
+  if (!confirm('Are you sure you want to delete this book?')) return
+  try {
+    await axios.delete(`/api/books/${id}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    })
+    // Refresh list after deletion
+    fetchBooks(pagination.value.currentPage)
+  } catch (err) {
+    console.error('Delete failed:', err)
+    alert('Failed to delete book')
   }
 }
 
