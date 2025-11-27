@@ -165,9 +165,13 @@ const locations = [
 const submitForm = async () => {
   errors.value = []
   try {
-    const res = await axios.post('/api/books', form.value)
+    const token = localStorage.getItem('token') // stored at login
+    const res = await axios.post('/api/books', form.value, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
     const newBookId = res.data.book._id
-    // Jump straight to the detail page of the new book
     router.push(`/book/detail/${newBookId}`)
   } catch (err) {
     if (err.response?.data?.errors) {

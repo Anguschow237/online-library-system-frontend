@@ -165,7 +165,12 @@ const locations = [
 // Fetch existing book data
 onMounted(async () => {
   try {
-    const res = await axios.get(`/api/books/${bookId}`)
+    const token = localStorage.getItem('token')
+    const res = await axios.get(`/api/books/${bookId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
     form.value = {
       ...form.value,
       ...res.data.book,
@@ -179,7 +184,12 @@ onMounted(async () => {
 const submitForm = async () => {
   errors.value = []
   try {
-    await axios.put(`/api/books/${bookId}`, form.value)
+    const token = localStorage.getItem('token')
+    await axios.put(`/api/books/${bookId}`, form.value, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
     router.push(`/book/detail/${bookId}`)
   } catch (err) {
     if (err.response?.data?.errors) {
@@ -194,7 +204,12 @@ const submitForm = async () => {
 const deleteBook = async () => {
   if (!confirm('Are you sure you want to delete this book? This cannot be undone.')) return
   try {
-    await axios.delete(`/api/books/${bookId}`)
+    const token = localStorage.getItem('token')
+    await axios.delete(`/api/books/${bookId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
     router.push('/books')
   } catch {
     errors.value = ['Failed to delete book.']
