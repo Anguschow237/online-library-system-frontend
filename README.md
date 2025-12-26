@@ -1,51 +1,57 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=21479239&assignment_repo_type=AssignmentRepo)
-# comp3047-fall2025-vue-template
+Here’s a clean, professional **README.md** for your **frontend repo** (Vue.js part of the online library system). Copy-paste it directly into your forked repo's README.md (the one you renamed to something like `online-library-frontend`).
 
-This template should help get you started developing with Vue 3 in Vite.
+**Important**: Do **NOT** upload the assignment requirement PDF/image you just showed (the one mentioning "Task 1: Chest X-Ray Pneumonia Classification", ChatGPT, etc.). It clearly ties the project to coursework and reveals AI tool usage guidelines — keep it completely private and off GitHub.
 
-## Recommended IDE Setup
+```markdown
+# Online Library Management System (Frontend)
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Full-stack online library system — **this is the Vue.js 3 frontend**.
 
-## Recommended Browser Setup
+A responsive single-page application built with Vue 3 (Composition API), Vue Router, and Bootstrap 5. It consumes the Express.js backend API to provide user authentication, book browsing, borrowing, and admin management features with role-based access control.
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Features
+- **Login & Authentication**: Secure login with JWT token storage in localStorage
+- **Role-Based UI**: Normal users see book browsing & borrowing; Admins see full management (books & users)
+- **Book Management**: List, search, pagination, view details
+- **Borrowing System**: Borrow/return books with validation feedback
+- **Admin Dashboard**: User list, book CRUD, borrowing history (with Oruga Table for pagination, sorting, filtering)
+- **Responsive Design**: Mobile-friendly layout using Bootstrap 5
+- **Route Guards**: Protected routes redirect unauthenticated users to login
+- **Composition API**: Clean state management with ref(), computed(), and composables
 
-## Customize configuration
+## Tech Stack
+- Vue.js 3 (Composition API)
+- Vue Router (with guards)
+- Bootstrap 5 (styling & layout)
+- Oruga UI (advanced tables for user/book history)
+- Fetch API (for backend communication)
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Screenshots
+![Login Page](images/login-page.png)  
+![Books List](images/books-list.png)  
+![Admin Dashboard](images/admin-dashboard.png)  
+![Borrow Book](images/borrow-book.png)  
+(Upload your own screenshots to an `images/` folder in the repo)
 
-## Project Setup
+## Setup & Running
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Anguschow237/online-library-frontend.git
+   cd online-library-frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Configure proxy (optional, for development):
+   - Edit `vite.config.js` or `vue.config.js` to proxy API requests to backend (e.g., `/api` → `http://localhost:5000/api`)
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+   App runs at `http://localhost:5173` (or port shown in terminal)
 
-```sh
-npm install
-```
+## Related Repository
+- Backend (Express.js): [online-library-backend](https://github.com/Anguschow237/online-library-backend)
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Built by Chow Tsz Hin (Angus) — full-stack web application developed during Software Engineering course at HKBU.
