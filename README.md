@@ -1,8 +1,3 @@
-Here’s a clean, professional **README.md** for your **frontend repo** (Vue.js part of the online library system). Copy-paste it directly into your forked repo's README.md (the one you renamed to something like `online-library-frontend`).
-
-**Important**: Do **NOT** upload the assignment requirement PDF/image you just showed (the one mentioning "Task 1: Chest X-Ray Pneumonia Classification", ChatGPT, etc.). It clearly ties the project to coursework and reveals AI tool usage guidelines — keep it completely private and off GitHub.
-
-```markdown
 # Online Library Management System (Frontend)
 
 Full-stack online library system — **this is the Vue.js 3 frontend**.
