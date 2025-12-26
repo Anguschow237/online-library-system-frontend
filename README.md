@@ -22,11 +22,27 @@ A responsive single-page application built with Vue 3 (Composition API), Vue Rou
 - Fetch API (for backend communication)
 
 ## Screenshots
-![Login Page](images/login-page.png)  
-![Books List](images/books-list.png)  
-![Admin Dashboard](images/admin-dashboard.png)  
-![Borrow Book](images/borrow-book.png)  
-(Upload your own screenshots to an `images/` folder in the repo)
+
+![Sign In / Login Page](images/sign-in-page.png)  
+*Login with email and password — JWT token stored on success*
+
+![Homepage](images/homepage.png)  
+*Normal user view with highlighted, latest, and trending books*
+
+![Book List Page](images/book-list-page.png)  
+*Search, filtering, and pagination for browsing books*
+
+![Book Detail Page](images/book-detail-page.png)  
+*Detailed view with borrow option for authenticated users*
+
+![Admin Book Detail Page](images/admin-book-detail-page.png)  
+*Admin view with edit/delete options*
+
+![Admin Book Adding Page](images/admin-book-adding-page.png)  
+*Form for creating new books (admin only)*
+
+![Admin User Management Page](images/admin-user-management-page.png)  
+*Oruga table with user list, pagination, sorting, and search (admin only)*
 
 ## Setup & Running
 1. Clone the repository:
